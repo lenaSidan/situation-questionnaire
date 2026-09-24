@@ -390,6 +390,31 @@ textarea {
 #share-pdf-button:active {
   transform: translateY(1px);
 }
+.privacy-note {
+  margin: 24px 0 6px;
+  padding: 16px 17px;
+
+  background: #f5f8f9;
+  border: 1px solid #e1e8eb;
+  border-radius: 14px;
+}
+
+.privacy-note strong {
+  display: block;
+  margin-bottom: 7px;
+
+  font-size: 14px;
+  color: #4f6877;
+}
+
+.privacy-note p {
+  margin: 0;
+
+  font-size: 14px;
+  line-height: 1.55;
+
+  color: #68727a;
+}
 /* МОБИЛЬНЫЙ ЭКРАН */
 
 @media (max-width: 520px) {

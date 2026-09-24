@@ -18,8 +18,6 @@ const detailAnswer = document.getElementById("detail-answer");
 
 /* ========================================
    ВОПРОСЫ
-   Сейчас вопросы 12–38 закомментированы
-   для быстрого тестирования.
 ======================================== */
 
 const questions = [
@@ -117,6 +115,7 @@ const detailAnswers = [];
 startButton.addEventListener("click", () => {
   introScreen.hidden = true;
   questionScreen.hidden = false;
+  finishScreen.hidden = true;
 
   showQuestion();
 });
@@ -132,7 +131,7 @@ function showQuestion() {
 
   selectedAnswer = answers[currentQuestion] ?? null;
 
-  /* Восстанавливаем выбранный ответ */
+  /* ВОССТАНАВЛИВАЕМ ВЫБРАННЫЙ ОТВЕТ */
 
   answerButtons.forEach((button) => {
     button.classList.remove("selected");
@@ -142,15 +141,17 @@ function showQuestion() {
     }
   });
 
-  /* Назад нельзя на первом вопросе */
+  /* КНОПКА НАЗАД / К НАЧАЛУ */
 
-  backButton.disabled = currentQuestion === 0;
+  backButton.disabled = false;
 
-  /*
-    Дополнительное поле вопроса №12.
-    Когда вопросы 12–38 снова будут включены,
-    №12 будет иметь индекс 11.
-  */
+  if (currentQuestion === 0) {
+    backButton.textContent = "К началу";
+  } else {
+    backButton.textContent = "Назад";
+  }
+
+  /* ДОПОЛНИТЕЛЬНОЕ ПОЛЕ ВОПРОСА №12 */
 
   if (currentQuestion === 11) {
     detailBlock.hidden = false;
@@ -160,7 +161,7 @@ function showQuestion() {
     detailBlock.hidden = true;
   }
 
-  /* Последний активный вопрос */
+  /* ПОСЛЕДНИЙ ВОПРОС */
 
   if (currentQuestion === questions.length - 1) {
     nextButton.textContent = "Завершить";
@@ -218,7 +219,7 @@ nextButton.addEventListener("click", () => {
     return;
   }
 
-  /* Анкета завершена */
+  /* АНКЕТА ЗАВЕРШЕНА */
 
   questionScreen.hidden = true;
   finishScreen.hidden = false;
@@ -230,20 +231,41 @@ nextButton.addEventListener("click", () => {
 });
 
 /* ========================================
-   НАЗАД
+   НАЗАД / К НАЧАЛУ
 ======================================== */
 
 backButton.addEventListener("click", () => {
-  if (currentQuestion > 0) {
-    currentQuestion--;
+  /*
+    Если мы на вопросе №1,
+    возвращаемся на начальный экран.
+    Имя и выбранный ответ сохраняются.
+  */
 
-    showQuestion();
+  if (currentQuestion === 0) {
+    questionScreen.hidden = true;
+    introScreen.hidden = false;
 
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
+
+    return;
   }
+
+  /*
+    На остальных вопросах
+    возвращаемся на предыдущий.
+  */
+
+  currentQuestion--;
+
+  showQuestion();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 });
 
 /* ========================================
@@ -279,18 +301,14 @@ function createPDF(action) {
 
   const pdf = pdfMake.createPdf(documentDefinition);
 
-  /*
-    Скачать
-  */
+  /* СКАЧАТЬ */
 
   if (action === "download") {
     pdf.download(fileName);
     return;
   }
 
-  /*
-    Поделиться
-  */
+  /* ПОДЕЛИТЬСЯ */
 
   pdf.getBlob(async (blob) => {
     await sharePDF(blob, fileName);
@@ -352,7 +370,7 @@ function buildPdfDocument() {
     },
   ];
 
-  /* Добавляем активные вопросы */
+  /* ДОБАВЛЯЕМ 38 ВОПРОСОВ */
 
   questions.forEach((question, index) => {
     const answer = answers[index] ?? "—";
@@ -389,9 +407,7 @@ function buildPdfDocument() {
       },
     ];
 
-    /*
-      Уточнение вопроса №12
-    */
+    /* УТОЧНЕНИЕ ВОПРОСА №12 */
 
     if (index === 11 && detailAnswers[index]?.trim()) {
       questionBlock.push({
@@ -493,11 +509,6 @@ async function sharePDF(blob, fileName) {
     type: "application/pdf",
   });
 
-  /*
-    Проверяем, может ли телефон
-    поделиться именно файлом.
-  */
-
   const shareData = {
     files: [file],
 
@@ -513,8 +524,8 @@ async function sharePDF(blob, fileName) {
       return;
     } catch (error) {
       /*
-        Если пользователь сам закрыл
-        меню Поделиться, ничего не делаем.
+        Пользователь сам закрыл
+        системное меню.
       */
 
       if (error.name === "AbortError") {
@@ -526,9 +537,9 @@ async function sharePDF(blob, fileName) {
   }
 
   /*
-    Запасной вариант:
-    если браузер не умеет отправлять PDF,
-    просто скачиваем его.
+    Если браузер не поддерживает
+    отправку PDF напрямую,
+    скачиваем файл.
   */
 
   downloadBlob(blob, fileName);
