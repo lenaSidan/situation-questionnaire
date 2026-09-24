@@ -1,0 +1,434 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 24px 16px;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+
+  color: #30343b;
+  background: #fafaf8;
+}
+
+/* ОСНОВНАЯ КАРТОЧКА */
+
+section {
+  width: 100%;
+  max-width: 480px;
+
+  margin: 0 auto;
+  padding: 30px 24px;
+
+  background: #ffffff;
+
+  border: 1px solid #eceff1;
+  border-radius: 24px;
+
+  box-shadow: 0 14px 40px rgba(45, 55, 65, 0.055);
+}
+
+/* ЗАГОЛОВКИ */
+
+h1 {
+  margin: 2px 0 26px;
+
+  text-align: center;
+
+  font-size: 29px;
+  line-height: 1.2;
+  font-weight: 600;
+
+  letter-spacing: -0.4px;
+
+  color: #30343b;
+}
+
+h2 {
+  margin: 28px 0 32px;
+
+  font-size: 24px;
+  line-height: 1.48;
+  font-weight: 500;
+
+  letter-spacing: -0.25px;
+
+  color: #30343b;
+}
+
+/* ОБЫЧНЫЙ ТЕКСТ */
+
+p {
+  margin: 0 0 17px;
+
+  font-size: 16.5px;
+  line-height: 1.6;
+
+  color: #626a73;
+}
+
+/* ПОЛЯ */
+
+label {
+  display: block;
+
+  margin: 28px 0 9px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  color: #444a51;
+}
+
+input,
+textarea {
+  display: block;
+  width: 100%;
+
+  padding: 15px 16px;
+
+  font-family: inherit;
+  font-size: 16px;
+
+  color: #30343b;
+  background: #ffffff;
+
+  border: 1px solid #dce1e5;
+  border-radius: 13px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9ba2a8;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #8ea9b7;
+
+  box-shadow: 0 0 0 3px rgba(142, 169, 183, 0.11);
+}
+
+textarea {
+  min-height: 90px;
+  line-height: 1.45;
+
+  resize: vertical;
+}
+
+/* КНОПКА НАЧАТЬ */
+
+#start-button {
+  width: 100%;
+
+  margin-top: 24px;
+  padding: 15px 20px;
+
+  border: 0;
+  border-radius: 13px;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+
+  color: #ffffff;
+  background: #5e7483;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+
+#start-button:hover {
+  background: #526876;
+}
+
+#start-button:active {
+  transform: translateY(1px);
+}
+
+/* ПРОГРЕСС */
+
+#progress {
+  display: inline-block;
+
+  margin: 0 0 4px;
+  padding: 7px 12px;
+
+  font-size: 13.5px;
+  font-weight: 600;
+
+  color: #60798a;
+  background: #eef4f7;
+
+  border-radius: 999px;
+}
+
+/* ОТВЕТЫ 1–5 */
+
+#answer-options {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+
+  gap: 9px;
+
+  margin: 0 0 30px;
+}
+
+.answer-button {
+  width: 100%;
+  height: 62px;
+
+  margin: 0;
+  padding: 0;
+
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 500;
+
+  color: #4e5963;
+  background: #ffffff;
+
+  border: 1px solid #dde2e7;
+  border-radius: 14px;
+
+  cursor: pointer;
+
+  box-shadow: 0 2px 8px rgba(45, 55, 65, 0.02);
+
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.answer-button:hover {
+  border-color: #aebbc4;
+}
+
+/* ВЫБРАННЫЙ ОТВЕТ */
+
+.answer-button.selected {
+  color: #34444f;
+
+  background: #dceaf0;
+  border-color: #8ea9b7;
+
+  box-shadow: 0 4px 12px rgba(94, 116, 131, 0.08);
+}
+
+/* ДОПОЛНИТЕЛЬНОЕ ПОЛЕ ВОПРОСА №12 */
+
+#detail-block {
+  margin: -6px 0 28px;
+}
+
+#detail-block label {
+  margin-top: 0;
+  margin-bottom: 9px;
+}
+
+/* НАВИГАЦИЯ */
+
+#navigation-buttons {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+
+  gap: 10px;
+}
+
+/* НАЗАД */
+
+#back-button {
+  width: 100%;
+
+  padding: 15px 20px;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+
+  color: #5e7483;
+  background: #ffffff;
+
+  border: 1px solid #d7e0e5;
+  border-radius: 13px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+#back-button:hover:not(:disabled) {
+  background: #f6f8f9;
+  border-color: #bdcbd3;
+}
+
+#back-button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* ДАЛЕЕ */
+
+#next-button {
+  width: 100%;
+
+  margin: 0;
+  padding: 15px 20px;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+
+  color: #ffffff;
+  background: #5e7483;
+
+  border: 0;
+  border-radius: 13px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+
+#next-button:hover {
+  background: #526876;
+}
+
+#next-button:active {
+  transform: translateY(1px);
+}
+
+/* ФИНАЛЬНЫЙ ЭКРАН */
+
+#finish-screen p {
+  text-align: center;
+}
+
+#create-pdf-button {
+  width: 100%;
+
+  margin-top: 12px;
+  padding: 15px 20px;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+
+  color: #ffffff;
+  background: #5e7483;
+
+  border: 0;
+  border-radius: 13px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+
+#create-pdf-button:hover {
+  background: #526876;
+}
+
+#create-pdf-button:active {
+  transform: translateY(1px);
+}
+#finish-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+#share-pdf-button {
+  width: 100%;
+
+  padding: 15px 20px;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+
+  color: #5e7483;
+  background: #ffffff;
+
+  border: 1px solid #d7e0e5;
+  border-radius: 13px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+#share-pdf-button:hover {
+  background: #f6f8f9;
+  border-color: #bdcbd3;
+}
+
+#share-pdf-button:active {
+  transform: translateY(1px);
+}
+/* МОБИЛЬНЫЙ ЭКРАН */
+
+@media (max-width: 520px) {
+  body {
+    padding: 16px 12px;
+  }
+
+  section {
+    padding: 26px 20px 24px;
+    border-radius: 21px;
+  }
+
+  h1 {
+    font-size: 27px;
+  }
+
+  h2 {
+    margin-top: 25px;
+
+    font-size: 23px;
+    line-height: 1.46;
+  }
+
+  #answer-options {
+    gap: 7px;
+  }
+
+  .answer-button {
+    height: 56px;
+    border-radius: 12px;
+  }
+
+  #navigation-buttons {
+    gap: 8px;
+  }
+
+  #back-button,
+  #next-button,
+  #create-pdf-button {
+    padding: 14px 12px;
+  }
+}

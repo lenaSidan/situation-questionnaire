@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Анкета ситуации</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <section id="intro-screen">
+      <h1>Анкета ситуации</h1>
+
+      <p>
+        Перед вами 38 утверждений. Для каждого утверждения нужно будет выбрать оценку от 1 до 5 в зависимости от того,
+        насколько точно оно описывает ваше состояние сейчас.
+      </p>
+
+      <p>Здесь нет правильных или неправильных ответов. Ответы не сохраняются на сайте.</p>
+
+      <label for="name">Имя или обозначение</label>
+
+      <input type="text" id="name" placeholder="Например: Анна, А., клиент 12" />
+
+      <button type="button" id="start-button">Начать</button>
+    </section>
+
+    <section id="question-screen" hidden>
+      <p id="progress">Вопрос 1 из 38</p>
+
+      <h2 id="question-text">Я чувствую себя виноватой(ым). Меня терзают угрызения совести.</h2>
+
+      <div id="answer-options">
+        <button type="button" class="answer-button" data-value="1">1</button>
+        <button type="button" class="answer-button" data-value="2">2</button>
+        <button type="button" class="answer-button" data-value="3">3</button>
+        <button type="button" class="answer-button" data-value="4">4</button>
+        <button type="button" class="answer-button" data-value="5">5</button>
+      </div>
+
+      <div id="detail-block" hidden>
+        <label for="detail-answer"> Укажите конкретного человека или конкретное событие </label>
+
+        <textarea id="detail-answer" rows="3" placeholder="Введите ответ"></textarea>
+      </div>
+
+      <div id="navigation-buttons">
+        <button type="button" id="back-button">Назад</button>
+
+        <button type="button" id="next-button">Далее</button>
+      </div>
+    </section>
+    <section id="finish-screen" hidden>
+      <h1>Анкета заполнена</h1>
+
+      <p>Все ответы сохранены в текущей анкете.</p>
+
+      <p>Теперь можно подготовить документ для отправки специалисту.</p>
+
+      <div id="finish-actions">
+        <button type="button" id="create-pdf-button">Скачать PDF</button>
+
+        <button type="button" id="share-pdf-button">Поделиться</button>
+      </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.12/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.12/vfs_fonts.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
